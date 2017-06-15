@@ -5,6 +5,7 @@
 #include <stdlib.h>
 
 void encode(string s, int k);
+int modify_key(int n);
 
 int main(int argc, string argv[])
 {
@@ -13,10 +14,11 @@ int main(int argc, string argv[])
         printf("Error\n");
         return 1;
     }
-    int key = atoi(argv[1]);
+    int key = modify_key(atoi(argv[1]));
+    printf("plaintext: ");
     string p = get_string();
+    printf("ciphertext: ");
     encode(p, key);
-    printf("\n");
     return 0;
 
 }
@@ -60,4 +62,14 @@ void encode(string s, int k)
             printf("%c", s[i]);
         }
     }
+    printf("\n");
+}
+
+int modify_key(int n)
+{
+    while(n > 26)
+    {
+        n = n % 26;
+    }
+    return n;
 }
